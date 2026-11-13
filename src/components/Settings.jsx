@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react'
 import { X, Sun, Moon, Server, Mail, Trash2 } from 'lucide-react'
 import { backend, checkConnection } from '../services/n8n.js'
 
-// const STATUS = {
-//   checking: ['Checking…', 'text-slate-500'],
-//   demo: ['Demo mode: no webhook URL configured', 'text-amber-600 dark:text-amber-400'],
-//   online: ['Reachable', 'text-emerald-600 dark:text-emerald-400'],
-//   offline: ['Unreachable: is n8n running?', 'text-red-600 dark:text-red-400'],
-// }
-
 const STATUS = {
-  checking: ['Checking…', 'text-gmail-grayText dark:text-[#9AA0A6]'],
-  demo: ['Demo mode: no webhook URL configured', 'text-gmail-yellowText dark:text-[#FDD663]'],
-  online: ['Reachable', 'text-gmail-greenText dark:text-[#81C995]'],
-  offline: ['Unreachable: is n8n running?', 'text-gmail-redText dark:text-[#F28B82]'],
+  checking: ['Checking…', 'text-slate-500'],
+  demo: ['Demo mode: no webhook URL configured', 'text-amber-600 dark:text-amber-400'],
+  online: ['Reachable', 'text-emerald-600 dark:text-emerald-400'],
+  offline: ['Unreachable: is n8n running?', 'text-red-600 dark:text-red-400'],
 }
+
+// const STATUS = {
+//   checking: ['Checking…', 'text-gmail-grayText dark:text-[#9AA0A6]'],
+//   demo: ['Demo mode: no webhook URL configured', 'text-gmail-yellowText dark:text-[#FDD663]'],
+//   online: ['Reachable', 'text-gmail-greenText dark:text-[#81C995]'],
+//   offline: ['Unreachable: is n8n running?', 'text-gmail-redText dark:text-[#F28B82]'],
+// }
 
 
 function Section({ icon: Icon, title, children }) {
@@ -65,11 +65,11 @@ export default function Settings({ theme, setTheme, onClear, onClose }) {
           <p className="mb-2 text-sm text-slate-600 dark:text-slate-300">Removes the conversation list from this browser. Memory stored in MongoDB is not touched.</p>
           {confirm ? (
             <div className="flex gap-2">
-              <button onClick={() => { onClear(); setConfirm(false) }} className="rounded-xl bg-red-600 px-3 py-1.5 text-sm font-medium text-white">Yes, clear history</button>
+              <button onClick={() => { onClear(); setConfirm(false) }} className="rounded-xl bg-[#6d3fd1] px-3 py-1.5 text-sm font-medium text-white">Yes, clear history</button>
               <button onClick={() => setConfirm(false)} className="rounded-xl px-3 py-1.5 text-sm ring-1 ring-black/10 dark:ring-white/10">Cancel</button>
             </div>
           ) : (
-            <button onClick={() => setConfirm(true)} className="rounded-xl px-3 py-1.5 text-sm font-medium text-red-600 ring-1 ring-red-200 dark:ring-red-500/30">Clear local history</button>
+            <button onClick={() => setConfirm(true)} className="rounded-xl px-3 py-1.5 text-sm font-medium text-red-500 ring-1 ring-blue-500 dark:ring-red-500/30">Clear local history</button>
           )}
         </Section>
       </div>

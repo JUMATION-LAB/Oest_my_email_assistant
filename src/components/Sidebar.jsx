@@ -56,7 +56,7 @@ export default function Sidebar({ chats, activeId, open, onClose, onNew, onSelec
           <span className="text-lg font-semibold">Oest Assistant</span>
         </div>
         <div className="p-4">
-          <button onClick={onNew} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 py-2.5 font-medium text-white shadow-md shadow-brand-500/30 transition hover:brightness-110">
+          <button onClick={onNew} className="flex w-full items-center justify-center gap-2 rounded-2xl  bg-[#6d3fd1] from-brand-500 to-brand-700 py-2.5 font-medium text-white shadow-md shadow-brand-500/30 transition hover:brightness-110">
             <Plus size={18} /> New chat
           </button>
         </div>

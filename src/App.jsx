@@ -55,7 +55,7 @@ export default function App() {
   const chatError = error && error.chatId === active?.id ? error : null
 
   return (
-    <div className="flex h-dvh overflow-hidden">
+    <div className="flex h-dvh overflow-hidden fixed">
       <Sidebar
         chats={store.chats} activeId={active?.id} open={navOpen} onClose={() => setNavOpen(false)}
         onNew={() => { store.newChat(); setNavOpen(false) }} onSelect={store.select}

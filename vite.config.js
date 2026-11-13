@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
       ],
       proxy: {
         '/n8n': {
-          target: env.N8N_BASE_URL || 'http://localhost:5678' || 'https://elude-washbowl-elixir.ngrok-free.dev',
+          target: env.N8N_BASE_URL  || 'https://elude-washbowl-elixir.ngrok-free.dev' || 'http://localhost:5678',
           changeOrigin: true,
           rewrite: (p) => p.replace(/^\/n8n/, ''),
         },

@@ -1,7 +1,7 @@
 {
   "name": "Oest Email Assistant",
   "nodes": [
-    { 
+    {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
@@ -113,19 +113,6 @@
     },
     {
       "parameters": {
-        "contextWindowLength": 100
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.4,
-      "position": [
-        336,
-        384
-      ],
-      "id": "357dc552-1a01-4674-b436-d776cd000bab",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
         "operation": "getAll",
         "limit": 10,
         "filters": {}
@@ -199,7 +186,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.2,
       "position": [
-        528,
+        560,
         448
       ],
       "id": "039b0240-b3a0-49a0-b6b4-c6762da52816",
@@ -265,8 +252,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
       "typeVersion": 1.1,
       "position": [
-        256,
-        512
+        800,
+        -48
       ],
       "id": "f743e754-80ce-4728-a8ad-1ffa5bfe4ceb",
       "name": "MongoDB Chat Memory",
@@ -276,6 +263,80 @@
           "name": "MongoDB account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        432
+      ],
+      "id": "126896d0-af16-41f8-8322-f35297171cd3",
+      "name": "Reply to a message in Gmail",
+      "webhookId": "60c20018-0122-4dab-9b91-efd82316b82b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "JYteUaC5g4pDlNLi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        432
+      ],
+      "id": "61ab9e67-40e9-4a82-8d7e-8b74f253fba8",
+      "name": "Reply to a message in Gmail1",
+      "webhookId": "60c20018-0122-4dab-9b91-efd82316b82b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "eylGSbnt3zthmnEG",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Leopoldmatovu9\n",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        832,
+        144
+      ],
+      "id": "1f73243d-49ab-4301-8572-d2f083816227",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## jumatovu9",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        224
+      ],
+      "id": "73aeec98-6c2f-4be4-902b-ad3c2a845b82",
+      "name": "Sticky Note1"
     }
   ],
   "pinData": {},
@@ -327,11 +388,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Simple Memory": {
-      "ai_memory": [
-        []
       ]
     },
     "Get many messages in Gmail1": {
@@ -410,6 +466,28 @@
           }
         ]
       ]
+    },
+    "Reply to a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to a message in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -417,7 +495,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "02ada631-b78e-4402-8469-cc36e821864d",
+  "versionId": "55d5b410-07bd-4e69-9937-6042f704dbd1",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "2fc852825310725de050e51c1c0ebb05efdc9cbfb0a66864cb742f172371eb60"
