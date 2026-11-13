@@ -1,0 +1,428 @@
+{
+  "name": "Oest Email Assistant",
+  "nodes": [
+    { 
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        -144
+      ],
+      "id": "1672d767-c3b3-41d8-b486-e613da5ea023",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        304,
+        -48
+      ],
+      "id": "4bb516d0-cad9-43a7-ba22-8a39b6287882",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3.8-27b",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        32,
+        64
+      ],
+      "id": "c9af1732-eca5-473c-9619-84b2e2137101",
+      "name": "Groq Chat Model",
+      "notesInFlow": true,
+      "credentials": {
+        "groqApi": {
+          "id": "L8eLhETaHKu9TWlM",
+          "name": "Groq account"
+        }
+      },
+      "notes": "Youre an Email Agent built by Jumation to assist him with the email action tools provided. Act friendly and coincise . You can also help him with some other activities like answering exam questions."
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nMy name is Oest. An email assistant built by Jumation.\nHow can I assist you today?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -352,
+        -128
+      ],
+      "id": "b0d75dbc-970a-4ba3-b479-c07863c79130",
+      "name": "When chat message received",
+      "webhookId": "4e67f88b-52c5-4cf8-a257-eef6745caef0"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 10,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        192
+      ],
+      "id": "0b181f1a-5f83-44a2-b9f7-2ecc72956c48",
+      "name": "Get many messages in Gmail",
+      "webhookId": "1b55df87-fcef-43cb-b5a1-846db0713e80",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "eylGSbnt3zthmnEG",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "leopoldmatovu9@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        128
+      ],
+      "id": "33ff37ae-0c7d-4a2a-98df-64a053ae22d1",
+      "name": "Send a message in Gmail",
+      "webhookId": "1b55df87-fcef-43cb-b5a1-846db0713e80",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "eylGSbnt3zthmnEG",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 100
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        384
+      ],
+      "id": "357dc552-1a01-4674-b436-d776cd000bab",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 10,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        240
+      ],
+      "id": "43da1507-3b7b-4caf-819e-6e0324bbf655",
+      "name": "Get many messages in Gmail1",
+      "webhookId": "1b55df87-fcef-43cb-b5a1-846db0713e80",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "JYteUaC5g4pDlNLi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        816,
+        384
+      ],
+      "id": "61a0e635-5403-4026-84c9-b5f426ae1e11",
+      "name": "Delete a message in Gmail",
+      "webhookId": "dda611fc-9130-44b6-b2d7-8a90859b20c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "JYteUaC5g4pDlNLi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        416
+      ],
+      "id": "3dbd7dc1-3c6c-4661-8881-8b310d9f351c",
+      "name": "Send a message in Gmail1",
+      "webhookId": "e080cdf5-3afa-4b35-8f09-c64d0f2dfab2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "JYteUaC5g4pDlNLi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        448
+      ],
+      "id": "039b0240-b3a0-49a0-b6b4-c6762da52816",
+      "name": "Add label to message in Gmail",
+      "webhookId": "60c20018-0122-4dab-9b91-efd82316b82b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "JYteUaC5g4pDlNLi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        -32,
+        288
+      ],
+      "id": "4af14a7b-04d1-4e68-99bd-714e19cc90b5",
+      "name": "Add label to message in Gmail1",
+      "webhookId": "60c20018-0122-4dab-9b91-efd82316b82b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "eylGSbnt3zthmnEG",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        400
+      ],
+      "id": "ea57bc9b-c151-4ba4-8361-6e42ff2dda91",
+      "name": "Delete a message in Gmail1",
+      "webhookId": "dda611fc-9130-44b6-b2d7-8a90859b20c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "eylGSbnt3zthmnEG",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "my_n8n_agent_document",
+        "databaseName": "cluster0",
+        "contextWindowLength": 1000
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1.1,
+      "position": [
+        256,
+        512
+      ],
+      "id": "f743e754-80ce-4728-a8ad-1ffa5bfe4ceb",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "l9ZiYmvtsnQ0eUdO",
+          "name": "MongoDB account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Get many messages in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a message in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "02ada631-b78e-4402-8469-cc36e821864d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2fc852825310725de050e51c1c0ebb05efdc9cbfb0a66864cb742f172371eb60"
+  },
+  "nodeGroups": [],
+  "id": "pez3aws4NCITJtQJ",
+  "tags": []
+}
