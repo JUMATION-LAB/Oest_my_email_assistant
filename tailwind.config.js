@@ -5,9 +5,17 @@ export default {
     extend: {
       fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
       colors: {
+        // Gmail red as the main accent (every existing brand-* class picks this up)
         brand: {
-          50: '#f4f0fe', 100: '#e9e1fd', 200: '#d5c6fa', 300: '#b9a0f5', 400: '#9b7bf0',
-          500: '#7c4dd8', 600: '#6d3fd1', 700: '#5b32b3',
+          50: '#FCE8E6', 100: '#FAD2CF', 200: '#F6AEA9', 300: '#F28B82',
+          400: '#EE675C', 500: '#D93025', 600: '#C5221F', 700: '#B31412',
+        },
+        // Gmail label pairs: red = brand/errors, yellow = attention, green = success
+        gmail: {
+          red: '#D93025', redBg: '#FCE8E6', redText: '#C5221F',
+          yellow: '#F29900', yellowBg: '#FEF3D6', yellowText: '#B06000',
+          green: '#188038', greenBg: '#E6F4EA', greenText: '#137333',
+          grayBg: '#F1F3F4', grayText: '#5F6368', charcoal: '#3C4043',
         },
       },
     },
