@@ -13,6 +13,8 @@ const STARTERS = [
   { icon: Mail, title: 'All accounts', desc: 'Check every connected Gmail', prompt: 'Check both my Gmail accounts for important messages.' },
 ]
 
+const bubbleBase = 'rounded-2xl rounded-tl-md bg-white shadow-sm ring-1 ring-black/5 dark:bg-white/5 dark:ring-white/10'
+
 function Welcome({ pick }) {
   return (
     <div className="flex flex-col items-center pt-4 text-center sm:pt-10">
@@ -32,7 +34,8 @@ function Welcome({ pick }) {
   )
 }
 
-function Bubble({ m }) {
+// live = this is the newest reply, so its mascot animates; older replies stay still.
+function Bubble({ m, live }) {
   const [copied, setCopied] = useState(false)
   if (m.role === 'user')
     return (
@@ -44,10 +47,10 @@ function Bubble({ m }) {
     try { await navigator.clipboard.writeText(m.content); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch { /* clipboard blocked */ }
   }
   return (
-    <div className="group flex gap-3">
-      <div className="mt-1 hidden shrink-0 sm:block"><Mascot size={32} /></div>
-      <div className="min-w-0 max-w-[92%]">
-        <div className="md break-words rounded-2xl rounded-tl-md bg-white px-4 py-3 shadow-sm ring-1 ring-black/5 dark:bg-white/5 dark:ring-white/10">
+    <div className="group flex items-start gap-2 sm:gap-3">
+      <div className="mt-1 shrink-0"><Mascot size={36} animated={live} /></div>
+      <div className="min-w-0 max-w-[calc(100%-3rem)]">
+        <div className={`md break-words px-4 py-3 ${bubbleBase}`}>
           <ReactMarkdown components={{ a: ({ node, ...p }) => <a {...p} target="_blank" rel="noreferrer noopener" /> }}>{m.content}</ReactMarkdown>
         </div>
         <button onClick={copy} aria-label="Copy message" className="mt-1 flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs text-slate-500 hover:text-brand-600 focus:opacity-100 sm:opacity-0 sm:group-hover:opacity-100">
@@ -62,6 +65,8 @@ export default function Chat({ chat, busy, error, draft, setDraft, onSend, onRet
   const endRef = useRef(null)
   const taRef = useRef(null)
   const messages = chat?.messages ?? []
+  let lastReply = -1
+  messages.forEach((m, i) => { if (m.role === 'assistant') lastReply = i })
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [messages.length, busy, error])
   useEffect(() => {
@@ -81,12 +86,17 @@ export default function Chat({ chat, busy, error, draft, setDraft, onSend, onRet
         <div className="mx-auto flex max-w-3xl flex-col gap-5">
           {messages.length === 0
             ? <Welcome pick={(p) => { setDraft(p); taRef.current?.focus() }} />
-            : messages.map((m) => <Bubble key={m.id} m={m} />)}
+            : messages.map((m, i) => <Bubble key={m.id} m={m} live={i === lastReply && !busy} />)}
+
           {busy && (
-            <div className="flex items-center gap-1.5 pl-1" role="status" aria-label="Oest is typing">
-              {[0, 150, 300].map((d) => <span key={d} className="h-2 w-2 animate-bounce rounded-full bg-brand-400" style={{ animationDelay: `${d}ms` }} />)}
+            <div className="flex items-start gap-2 sm:gap-3" role="status" aria-label="Oest is typing">
+              <div className="mt-1 shrink-0"><Mascot size={36} thinking /></div>
+              <div className={`flex items-center gap-1.5 px-4 py-3.5 ${bubbleBase}`}>
+                {[0, 150, 300].map((d) => <span key={d} className="h-2 w-2 animate-bounce rounded-full bg-brand-400" style={{ animationDelay: `${d}ms` }} />)}
+              </div>
             </div>
           )}
+
           {error && (
             <div role="alert" className="flex items-center justify-between gap-3 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-200 dark:bg-red-500/10 dark:text-red-300 dark:ring-red-500/30">
               <span>{error.message}</span>
@@ -110,7 +120,6 @@ export default function Chat({ chat, busy, error, draft, setDraft, onSend, onRet
               <Send size={18} />
             </button>
           </div>
-          <p className="mt-2 text-center text-xs text-slate-500 dark:text-slate-400">Enter to send, Shift+Enter for a new line. Review drafts before they’re sent.</p>
         </div>
       </div>
     </>

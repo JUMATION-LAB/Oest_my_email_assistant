@@ -9,7 +9,7 @@ cp .env.example .env     # then edit the webhook id
 npm run dev              # http://localhost:5173
 ```
 With `VITE_N8N_WEBHOOK_URL` empty the app runs in labelled **demo mode**.
-
+ 
 ## Connect to n8n
 1. In the workflow use the **Chat Trigger** node, turn on *Make Chat Publicly Available*, and **activate** the workflow.
 2. Copy the production URL (`http://localhost:5678/webhook/<id>/chat`) and put `/n8n/webhook/<id>/chat` in `VITE_N8N_WEBHOOK_URL`. In dev, Vite proxies `/n8n` to `N8N_BASE_URL`, so no CORS setup is needed.

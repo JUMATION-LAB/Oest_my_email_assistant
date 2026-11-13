@@ -2,16 +2,24 @@ import { useEffect, useState } from 'react'
 import { X, Sun, Moon, Server, Mail, Trash2 } from 'lucide-react'
 import { backend, checkConnection } from '../services/n8n.js'
 
+// const STATUS = {
+//   checking: ['Checking…', 'text-slate-500'],
+//   demo: ['Demo mode: no webhook URL configured', 'text-amber-600 dark:text-amber-400'],
+//   online: ['Reachable', 'text-emerald-600 dark:text-emerald-400'],
+//   offline: ['Unreachable: is n8n running?', 'text-red-600 dark:text-red-400'],
+// }
+
 const STATUS = {
-  checking: ['Checking…', 'text-slate-500'],
-  demo: ['Demo mode: no webhook URL configured', 'text-amber-600 dark:text-amber-400'],
-  online: ['Reachable', 'text-emerald-600 dark:text-emerald-400'],
-  offline: ['Unreachable: is n8n running?', 'text-red-600 dark:text-red-400'],
+  checking: ['Checking…', 'text-gmail-grayText dark:text-[#9AA0A6]'],
+  demo: ['Demo mode: no webhook URL configured', 'text-gmail-yellowText dark:text-[#FDD663]'],
+  online: ['Reachable', 'text-gmail-greenText dark:text-[#81C995]'],
+  offline: ['Unreachable: is n8n running?', 'text-gmail-redText dark:text-[#F28B82]'],
 }
+
 
 function Section({ icon: Icon, title, children }) {
   return (
-    <section className="rounded-2xl bg-brand-50/60 p-4 dark:bg-white/5">
+    <section className="rounded-2xl bg-gmail-grayBg p-4 dark:bg-white/5">
       <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold"><Icon size={16} className="text-brand-500" />{title}</h3>
       {children}
     </section>
@@ -28,7 +36,7 @@ export default function Settings({ theme, setTheme, onClear, onClose }) {
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" onClick={onClose} onKeyDown={(e) => e.key === 'Escape' && onClose()}>
       <div role="dialog" aria-modal="true" aria-label="Settings" onClick={(e) => e.stopPropagation()}
-        className="max-h-full w-full max-w-md space-y-3 overflow-y-auto rounded-3xl bg-white p-5 shadow-2xl dark:bg-[#1d1835]">
+        className="max-h-full w-full max-w-md space-y-3 overflow-y-auto rounded-3xl bg-white p-5 shadow-2xl dark:bg-[#2d2e31]">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Settings</h2>
           <button onClick={onClose} aria-label="Close settings" autoFocus className="grid h-8 w-8 place-items-center rounded-lg hover:bg-brand-50 dark:hover:bg-white/10"><X size={18} /></button>

@@ -55,7 +55,7 @@ export default function App() {
       <main className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center gap-2 px-3 py-2 md:hidden">
           <button onClick={() => setNavOpen(true)} aria-label="Open conversations" className="grid h-9 w-9 place-items-center rounded-xl bg-white shadow-sm dark:bg-white/10"><Menu size={18} /></button>
-          <span className="font-semibold">Oest Assistant</span>
+          <span className="font-semibold">Oest Gmail Assistant</span>
         </header>
         {!backend.configured && (
           <div role="status" className="mx-4 mt-2 rounded-xl bg-amber-50 px-4 py-2 text-center text-sm text-amber-800 ring-1 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-200 dark:ring-amber-500/30">

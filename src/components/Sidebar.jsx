@@ -49,7 +49,7 @@ export default function Sidebar({ chats, activeId, open, onClose, onNew, onSelec
     <>
       {open && <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={onClose} aria-hidden="true" />}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-white/60 bg-white/85 backdrop-blur transition-transform md:static md:translate-x-0 dark:border-white/10 dark:bg-[#1a1530]/90 ${open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-white/60 bg-white/85 backdrop-blur transition-transform md:static md:translate-x-0 dark:border-white/10 dark:bg-[#202124] ${open ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex items-center gap-2 px-4 pt-4">
           <Mascot size={34} />
