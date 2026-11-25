@@ -11,7 +11,7 @@
  */
 const URL = (import.meta.env.VITE_N8N_WEBHOOK_URL || '').trim()
 const FILE_FIELD = (import.meta.env.VITE_N8N_FILE_FIELD || 'files').trim()
-
+ 
 export const backend = { configured: Boolean(URL), url: URL }
 
 const pickText = (d) => {

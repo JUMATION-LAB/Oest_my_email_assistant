@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/n8n/webhook/:path*",
-      "destination": " https://elude-washbowl-elixir.ngrok-free.dev/webhook/:path*"
+      "destination": "https://elude-washbowl-elixir.ngrok-free.dev/webhook/:path*"
     },
     {
       "source": "/(.*)",

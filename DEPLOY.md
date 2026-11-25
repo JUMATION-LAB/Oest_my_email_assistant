@@ -48,3 +48,22 @@ The upload only reaches the workflow as binary data. The agent won’t read it u
 For PDFs or text, add an Extract From File node before the agent.
 For images, check the agent’s option to pass binary images through.
 To attach a file to an outgoing email, the Gmail send node must use that binary field.
+
+
+
+eep the hardcoded placeholder if you're using the environment variable.
+3. How your configuration works
+Oest Assistant — Vercel
+
+Frontend sends to:
+
+/n8n/webhook/4e67f88b-52c5-4cf8-a257-eef6745caef0/chat
+
+Vercel Rewrite
+
+Forwards the request to your ngrok address
+
+ngrok → Local n8n
+
+https://elude-washbowl-elixir.ngrok-free.dev/webhook/.../chat
+Notice that /n8n exists only in your Vercel proxy path. Your n8n endpoint uses /webhook/... directly.

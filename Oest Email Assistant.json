@@ -28,7 +28,7 @@
     },
     {
       "parameters": {
-        "model": "qwen/qwen3.8-27b",
+        "model": "openai/gpt-oss-20b",
         "options": {
           "temperature": 0.7
         }
@@ -113,6 +113,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get many messages in Gmail\nleopold_get_Emails",
         "operation": "getAll",
         "limit": 10,
         "filters": {}
@@ -135,6 +137,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Delete a message in Gmail\nleopold_delete_Emails",
         "operation": "delete",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
       },
@@ -156,6 +160,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send a message in Gmail\nleopold_send_Emails",
         "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
         "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
         "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
@@ -179,6 +185,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Add label to message in Gmail\nLeopold_Add_Label_Emails",
         "operation": "addLabels",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
         "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}"
@@ -201,6 +209,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Add label to message in Gmail\nJuma_Add_Label_Emails",
         "operation": "addLabels",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
         "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}"
@@ -223,6 +233,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Delete a message in Gmail\nJuma_Delete_Emails",
         "operation": "delete",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
       },
@@ -266,6 +278,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Reply to a message in Gmail\nleopold_reply_Emails",
         "operation": "reply",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
         "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
@@ -289,6 +303,8 @@
     },
     {
       "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Reply to a message in Gmail\nJuma_Reply_Emails",
         "operation": "reply",
         "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
         "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
@@ -495,7 +511,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "55d5b410-07bd-4e69-9937-6042f704dbd1",
+  "versionId": "fdeb2c5c-d5b0-40ba-919c-2db002362101",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "2fc852825310725de050e51c1c0ebb05efdc9cbfb0a66864cb742f172371eb60"
